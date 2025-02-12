@@ -31,6 +31,10 @@ run: $(VENV)
 	@echo "$(BLUE)Running project...(RESET)"
 	$(VENV)/bin/python -m src/main.py
 
+corpus: $(VENV)
+	@echo "$(BLUE)Downloading corpus...(RESET)"
+	$(VENV)/bin/python -m src/corpus/download_corpus.py
+
 format: $(VENV)
 	@echo "$(CYAN)🎨 Formatting code with Black...$(RESET)"
 	$(BLACK) .
