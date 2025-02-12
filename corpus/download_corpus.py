@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup as bs
 
 URL = "https://www.20aubac.fr"
 MAIN_PAGE_URL = f"{URL}/sujets/philosophie-"
-# COMMENT_PAGE_URL = f"{URL}/sujets/philosophie-commentaire"
 
 
 def get_all_links(exercise_type: str):
@@ -51,10 +50,8 @@ def main():
             content = get_content(link, exercise_type)
             if content is None:
                 continue
-            # print(content)
             print("Downloading", link)
             save_content_as_file(content, link, exercise_type)
-    # print(all_links)
 
 
 if __name__ == "__main__":
