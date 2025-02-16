@@ -42,16 +42,35 @@ def save_content_as_file(content, link, exercise_type):
         f.write(content)
 
 
+def get_subject_name(link, exercise_type):
+    response = requests.get(link)
+    soup = bs(response.text, "html.parser")
+    if "Obtenir un accès premium" in soup.text:
+        return None
+    if exercise_type == "dissertation":
+        return soup.find("title").text.strip()
+
+
+def save_subjects(subjects: list):
+    with open("sujets_dissert.txt", "w") as outf:
+        for subject in subjects:
+            outf.write(subject + "\n")
+
+
 def main():
     types = ["dissertation", "commentaire"]
+    subjects = []
     for exercise_type in types:
         all_links = get_all_links(exercise_type)
         for link in all_links:
             content = get_content(link, exercise_type)
             if content is None:
                 continue
+            subject = get_subject_name(link, exercise_type)
+            subjects.append(subject)
             print("Downloading", link)
             save_content_as_file(content, link, exercise_type)
+    save_subjects(subjects)
 
 
 if __name__ == "__main__":

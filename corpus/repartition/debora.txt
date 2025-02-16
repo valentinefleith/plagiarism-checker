@@ -1,100 +1,100 @@
-33004-peut-on-connaitre-soi-meme.txt
-33006-liberte-est-elle-possible-sans-courage.txt
-33007-peut-on-vouloir-bonheur-des-autres.txt
-33012-a-t-il-droit-plus-fort.txt
-33014-question-qui-suis-je-admet-elle-une-reponse-exacte.txt
-33016-passion-est-elle-une-excuse.txt
-33066-avons-nous-devoir-chercher-verite.txt
-33068-desir-est-il-marque-notre-impuissance.txt
-33071-premier-humain.txt
-33077-peut-on-mentir-soi-meme.txt
-33079-apprenant-langue-maternelle-napprend-on-parler.txt
-33111-ai-je-une-conscience-suis-je-une-conscience.txt
-33136-raison-peut-elle-remplacer-religion.txt
-33145-religion-rassemble-t-elle-divise-t-elle-les-hommes.txt
-33195-doute-est-il-une-force-une-faiblesse.txt
-33233-peut-pas-vouloir-verite.txt
-33269-peut-on-apprendre-a-etre-libre.txt
-33271-travail-est-il-que-contrainte.txt
-33272-homme-est-il-libre.txt
-33273-peut-on-dire-que-objet-ordinaire-differe-oeuvre-art.txt
-33293-une-passion-sans-illusion-est-elle-possible.txt
-33295-les-passions-nous-empechent-elles-faire-notre-devoir.txt
-33296-memoire-suffit-t-elle-historien.txt
-33297-memoire-suffit-elle-historien.txt
-33350-peut-on-dire-que-perception-est-une-connaissance.txt
-33351-homme-sans-passe-peut-il-etre-homme-libre.txt
-33352-avenir-doit-il-etre-objet-crainte.txt
-33353-a-t-il-desordre-dans-nature.txt
-33354-homme-moderne-sest-il-trop-eloigne-nature.txt
-33357-peut-on-comparer-histoire-humanite-histoire-dun-homme.txt
-33358-quoi-reconnait-on-evenement-est-historique.txt
-33360-les-mots-cachent-ils-les-choses.txt
-33361-imagination-est-elle-necessairement-trompeuse.txt
-33362-a-t-il-bons-prejuges.txt
-33363-science-fournit-elle-que-des-certitudes.txt
-33365-experience-est-elle-seule-source-nos-connaissances.txt
-33366-faut-il-pour-connaitre-faire-vivant-objet.txt
-33377-existence-dun-inconscient-fait-elle-obstacle-connaissance-soi.txt
-33440-doit-avoir-confiance-conscience.txt
-33444-quoi-servent-les-sciences.txt
-33448-travail-contribue-t-il-unir-les-hommes-les-diviser.txt
-33449-est-ce-necessite-qui-pousse-homme-travailler.txt
-33450-art-fait-il-reflechir-fait-il-rever.txt
-33452-experience-beaute-passe-t-elle-necessairement-par-oeuvre-dart.txt
-33453-art-modifie-t-il-notre-rapport-realite.txt
-33454-peut-on-convaincre-autrui-une-oeuvre-art-est-belle.txt
-33455-faut-il-etre-connaisseur-pour-apprecier-une-oeuvre-dart.txt
-33456-quelle-est-fonction-premiere-etat.txt
-33457-opinion-peut-elle-etre-guide-pouvoir-politique.txt
-33460-sentir-oblige-est-ce-renoncer-liberte.txt
-33473-droit-peut-passer-force.txt
-33527-rhetorique-est-elle-utile.txt
-33547-pouvons-nous-bien-vivre-sans-passion.txt
-33653-les-lois-sopposent-elles-toujours-liberte.txt
-33702-devons-nous-nous-mefier-nos-certitudes.txt
-33797-croire-est-ce-renoncer-savoir.txt
-33807-vrai-est-il-toujours-vraisemblable.txt
-33808-que-signifie-expression-retour-nature.txt
-33830-politique-divise-t-elle-rassemble-t-elle.txt
-33841-avec-temps-tout.txt
-33852-homme-est-il-etre-naturel.txt
-33897-conscience-individu-est-elle-que-reflet-societe-laquelle-il-appartient.txt
-33898-peut-on-reduire-desir-manque.txt
-33987-peut-on-obeir-aux-lois-sans-renoncer-liberte.txt
-33999-liberte-expression-doit-elle-etre-limitee.txt
-339-imagination-est-elle-creatrice.txt
-34035-travail-est-ce-sante.txt
-34038-activite-artistique-peut-elle-pas-viser-beaute.txt
-34109-justice-sociale-est-elle-une-utopie.txt
-34148-etre-juste-est-ce-traiter-tout-monde-meme-facon.txt
-34154-peut-il-etre-juste-desobeir-aux-lois.txt
-34311-etat-religion-sont-ils-compatibles.txt
-34338-etat-est-il-une-institution-naturelle.txt
-34474-etre-libre-est-nier-les-determinismes.txt
-34487-peut-on-agir-inconsciemment.txt
-34488-douter-est-ce-renoncer-verite.txt
-34506-que-peut-langage.txt
-34519-passion-verite-conduit-elle-fanatisme.txt
-34533-pourquoi-faisons-nous-philosophie.txt
-34629-peut-on-veritablement-acceder-connaissance-soi.txt
-34632-autrui-est-il-etranger.txt
-34649-peut-on-forcer-quelun-etre-libre.txt
-34650-serions-nous-plus-libres-sans-etat.txt
-34692-tout-desir-est-il-culturel.txt
-34729-toute-croyance-est-elle-irrationnelle.txt
-34839-religion-a-t-elle-fonction-que-sociale.txt
-34842-liberte-est-elle-compatible-avec-determinisme.txt
-34862-liberte-des-uns-arrete-t-elle-commence-celle-des-autres.txt
-34903-est-il-raisonnable-dire-chacun-verite.txt
-34918-homme-est-il-naturellement-bon-mauvais.txt
-34928-que-peut-on-attendre-technique.txt
-362-etre-libre-est-ce-renconter-aucun-obstacle.txt
-369-les-apparences-sont-elles-toujours-trompeuses.txt
-371-peut-on-apprendre-devenir-artiste.txt
-374-faut-il-prendre-risque-penser-par-soi-meme.txt
-375-philosophie-a-t-elle-place-dans-monde-domine-par-science.txt
-377-conscience-est-elle-source-liberte-contrainte.txt
-383-peut-on-penser-sans-prejuges.txt
-404-peut-on-douter-tout.txt
-407-prendre-conscience-soi-est-devenir-etranger-soi.txt
+L’art peut-il se passer d’une maîtrise technique ?
+L’art transforme-t-il notre conscience du réel ?
+Est-ce le regard du spectateur qui fait l'oeuvre d'art ?
+Faut-il être connaisseur pour apprécier une oeuvre d'art ?
+Faut-il être cultivé pour apprécier une oeuvre d'art ?
+L'art fait-il réfléchir ou fait-il rêver ?
+L'art modifie-t-il notre rapport à la réalité ?
+L'art peut il se passer de règles ?
+L'expérience de la beauté passe-t-elle par l'oeuvre d'art ?
+L'imagination est-elle créatrice ?
+Peut-on apprendre à devenir artiste ?
+Peut-on convaincre autrui qu'une oeuvre d'art est belle ?
+Peut-on dire que l'objet ordinaire diffère de l'œuvre d’art ?
+Pourquoi sommes-nous sensibles à la beauté ?
+Qu'est-ce que la valeur d'une oeuvre d'art ?
+Une oeuvre d'art a-t-elle quelque chose à nous apprendre ?
+A quoi sert l'esprit critique ?
+Avons-nous le devoir de chercher la vérité ?
+De quelle vérité l'opinion est-elle capable ?
+Devons-nous nous méfier de nos certitudes ?
+Douter, est-ce renoncer à la vérité?
+Est-il raisonnable de dire « à chacun sa vérité »  ?
+Est-il vrai que toutes les opinions se valent ?
+Faut-il préférer le bonheur à la vérité ?
+Faut-il se questionner pour vivre ?
+La conviction d’avoir raison est-elle un obstacle au dialogue ?
+La passion de la vérité conduit-elle au fanatisme ?
+La philosophie est-elle un luxe théorique ?
+La recherche de la vérité peut-elle être désintéressée ?
+La vérité est-elle soumise au temps ?
+Le doute est-il une force ou une faiblesse ?
+Les apparences sont elles toujours trompeuses ?
+Le vrai est-il toujours vraisemblable ?
+L'expérience est-elle la seule source de nos connaissances ?
+Peut-il y avoir des vérités partielles ?
+Peut-on dire "à chacun sa vérité" ?
+Peut-on dire que la perception est une connaissance ?
+Peut-on distinguer l'illusion de l'erreur ?
+Peut-on douter de tout ?
+Peut-on être indifférent à la vérité ?
+Peut-on imposer la vérité ?
+Peut-on ne pas vouloir la vérité ?
+Peut-on penser sans préjugés ?
+Peut-on se mentir à soi-même ?
+Peut-on tout justifier ?
+Pourquoi faisons-nous de la philosophie ?
+Que vaut une preuve contre un préjugé ?
+Une vérité scientifique peut-elle être dangereuse ?
+Un Homme libre doit-il refuser toute censure ?
+Y a-t-il de bons préjugés ?
+Y a-t-il des questions auxquelles aucune science ne répond ?
+L’homme peut-il apprendre à penser ?
+Etre raisonnable est-ce renoncer à ses désirs ?
+La raison peut-elle rendre raison de tout ?
+Le doute est-il un échec de la raison ?
+À quoi servent les sciences ?
+L'expérience garantit-elle le caractère scientifique d'une théorie ?
+La connaissance de soi comporte-t-elle des obstacles ?
+La philosophie a-t-elle sa place dans un monde dominé par la science ?
+La science ne fournit-elle que des certitudes ?
+Le progrès est-il un mythe ?
+Les sens ne sont-ils pas suffisants à nous fournir nos connaissances ?
+Peut-on fonder la connaissance sur l'expérience sensible ?
+Pourquoi vouloir la science ?
+Science et technique sont-elles toujours légitimes ?
+Faut-il, pour le connaître, faire du vivant un objet ?
+La mort se vit-elle comme un ordre ou un désordre ?
+Les hommes sont-ils méchants par nature ?
+L'homme est-il naturellement bon ou mauvais ?
+L'homme est-il un animal dénaturé ?
+L'homme moderne s'est-il trop éloigné de la nature ?
+L'homme n'est-il qu'un être naturel ?
+N'y a-t-il de violence que pour l'homme ?
+Que signifie l'expression "retour à la nature" ?
+Y a-t-il du désordre dans la nature ?
+Dépend-il de nous d'être heureux ?
+Désirer est-ce nécessairement souffrir ?
+Accomplir tous ses désirs est-ce une bonne règle de vie ?
+Est-il absurde de désirer l'impossible ?
+Être heureux, est-ce chercher à satisfaire tous ses désirs ?
+Faut-il avoir peur de ses désirs ?
+Faut-il changer ses désirs ou l’ordre du monde ?
+Faut-il choisir entre la vertu et le bonheur ?
+Faut-il lutter contre ses désirs ?
+Faut-il s'abstenir de penser pour être heureux ?
+Faut-il satisfaire tous ses désirs ?
+Faut-il toujours préférer la lucidité à la naïveté ?
+Faut-il vivre comme si chaque jour devait être le dernier ?
+La passion est-elle une excuse ?
+La politique divise-t-elle ou rassemble-t-elle ?
+La recherche du bonheur est-elle une illusion ?
+Le bonheur, est-ce renoncer à ses désirs ?
+Le bonheur est-il le bien suprême ?
+Le bonheur est-il une affaire privée ?
+Le bonheur est-il une illusion ?
+Le bonheur se mérite-t-il ?
+Le désir d'être heureux est-il une illusion ?
+Le désir est-il la marque de la misère de l'homme ?
+Le désir est­‐il la marque de notre impuissance ?
+Le désir est-il par nature illimité ?
