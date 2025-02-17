@@ -34,7 +34,7 @@ def get_content(url, exercise_type):
 
 
 def save_content_as_file(content, link, exercise_type):
-    CORPUS_DIR = f"corpus/{exercise_type}"
+    CORPUS_DIR = f"corpus/human/{exercise_type}"
     if not os.path.exists(CORPUS_DIR):
         os.makedirs(CORPUS_DIR)
     name = f"{CORPUS_DIR}/{link.split('/')[-1]}.txt"
