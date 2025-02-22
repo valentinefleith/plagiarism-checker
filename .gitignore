@@ -1,4 +1,7 @@
 .idea
+# c'est l'environnement que j'ai crée
+environnement/ 
+
 corpus/raw
 # Byte-compiled / optimized / DLL files
 __pycache__/
