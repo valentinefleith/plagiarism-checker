@@ -51,7 +51,16 @@ export default {
     color: #fff;
     background-color: #724ae8;
     transition: 0.3s ease all;
+    cursor: pointer;
   }
+
+
+  label:hover {
+    background-color: #4d22cb;
+    transition: background 0.3s ease;
+ 
+  }
+
 
   input {
     display: none;
@@ -63,8 +72,10 @@ export default {
     background-color: #724ae8;
 
     label {
+      
       background-color: #fff;
       color: #724ae8;
+      
     }
   }
 
