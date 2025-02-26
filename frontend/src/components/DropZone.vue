@@ -6,7 +6,7 @@
 @drop.prevent="toggleActive"
 :class="{'active-dropzone' : active}"
 class="dropzone">
-    <span>Drag and Drop un fichier</span>
+    <span>Drag and Drop un fichier .txt</span>
     <span>OU</span>
     <label for="dropzonefile">Sélectionnez un fichier</label>
     <input type="file" id="dropzonefile" class="dropzonefile">
