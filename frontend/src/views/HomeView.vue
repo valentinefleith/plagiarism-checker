@@ -3,8 +3,8 @@
     <h1>IA Detector</h1>
     <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
     <div class="textarea-container">
-        <textarea id="textInput" placeholder="Collez votre texte ici..."></textarea>
-        <button onclick="envoyerTexte()">Envoyer</button>
+         <textarea v-model="textInput" placeholder="Collez votre texte ici..."></textarea> <!-- on utilise v-model -->
+        <button @click="envoyerTexte">Envoyer</button>
     </div>
 
     <DropZone @drop.prevent="drop" @change="selectedFile"/>
@@ -23,17 +23,72 @@ export default {
     DropZone
   },
   setup() {
+
+    const textInput = ref("")
+        // Fonction pour récupérer le texte 
+        const envoyerTexte = async () => {
+    if (!textInput.value.trim()) {
+      console.log("Le texte est vide !");
+      return;
+    }
+    try {
+      const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ texte: textInput.value }),
+      });
+
+      const data = await response.json();
+      console.log("Réponse du serveur :", data);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi :", error);
+    }
+  };
+
+
+  const envoyerFichier = async (fichier) => {
+  if (!fichier) {
+    console.log("Aucun fichier sélectionné.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("fichier", fichier);
+
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    console.log("Réponse du serveur :", data);
+    alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${data.id}`);
+  } catch (error) {
+    console.error("Erreur lors de l'envoi :", error);
+  }
+};
+
+
+  //fonction pour le drag and drop du fichier
     let dropzonefile = ref("")
+    const drop = async (e) => {
+  e.preventDefault();
+  const fichier = e.dataTransfer.files[0];
+  await envoyerFichier(fichier); // appel de la fonction envoyerFichier
+};
 
-    const drop = (e) => {
-      dropzonefile.value = e.dataTransfer.files[0]
+    
 
-    }
-
+    //fonction lorsque l'utilisateur selectionne un fichier via son os
     const selectedFile = () => {
-      dropzonefile.value = document.querySelector('.dropzonefile').files[0]
-    }
-    return {dropzonefile, drop, selectedFile};
+  const fichier = document.querySelector('.dropzonefile').files[0];
+  envoyerFichier(fichier);
+};
+
+    return {textInput ,envoyerTexte, dropzonefile, drop, selectedFile};
   }
 }
 </script>

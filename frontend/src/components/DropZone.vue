@@ -18,19 +18,39 @@ import {ref} from "vue";
 
 export default {
   name: 'DropZone',
-  setup() {
-    const active = ref(false)
+  emits: ['file-selected'], // On émettra un événement avec le fichier
+  setup(props, { emit }) {
+    const active = ref(false);
 
-    //quand la constante est appelé on passe de true à false
     const toggleActive = () => {
       active.value = !active.value;
-    }
+    };
 
-    return {active, toggleActive}
+    // Logique lorsque l'on drag and drop un fichier
+    const handleDrop = (e) => {
+      toggleActive();
+      const file = e.dataTransfer.files[0];
+      if (file) {
+        emit("file-selected", file); // On envoie le fichier à HomeView.vue
+      }
+    };
+
+    // Logique lorsque l'on va chercher via "selectionnez un fichier"
+    const handleFile = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        emit("file-selected", file);
+      }
+    };
+
+
+    
+    return { active, toggleActive, handleDrop, handleFile };
   }
 };
-
 </script>
+
+
 <style scoped lang="scss">
 .dropzone {
   width: 400px;
