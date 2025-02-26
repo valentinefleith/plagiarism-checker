@@ -9,6 +9,26 @@
 
     <DropZone @drop.prevent="drop" @change="selectedFile"/>
     <span class="file-info">Fichier : {{ dropzonefile.name }}</span>
+    <div id="contributeurs"><h3>Contributeurs</h3>
+    <ul>
+      <li>
+        <a href="https://github.com/Batouuuuu" target="_blank">
+        <img src="https://github.com/Batouuuuu.png" alt="Utilisateur 2" class="avatar">
+      </a>
+      </li>
+      <li>
+        <a href="https://github.com/valentinefleith" target="_blank">
+        <img src="https://github.com/valentinefleith.png" alt="Utilisateur 2" class="avatar">
+        
+      </a>
+      </li>
+      <li>
+        <a href="https://github.com/deboraptor" target="_blank">
+        <img src="https://github.com/deboraptor.png" alt="Utilisateur 2" class="avatar">
+      </a>
+      </li>
+    </ul>
+    </div>
   </div>
 </template>
 
@@ -47,48 +67,72 @@ export default {
     }
   };
 
-
-  const envoyerFichier = async (fichier) => {
+  //cette fonction va lire le fichier et envoyer le contenu
+  const lireFichierEnvoyer = async (fichier) => {
   if (!fichier) {
     console.log("Aucun fichier sélectionné.");
     return;
   }
 
-  const formData = new FormData();
-  formData.append("fichier", fichier);
+  const reader = new FileReader();
 
-  try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-      method: "POST",
-      body: formData,
-    });
+  reader.onload = async function (e) {
+    const fileContent = e.target.result;  // Contenu du fichier
+    const data = {
+      contenuFichier: fileContent,  // Ajout du contenu dans l'objet
+    };
 
-    const data = await response.json();
-    console.log("Réponse du serveur :", data);
-    alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${data.id}`);
-  } catch (error) {
-    console.error("Erreur lors de l'envoi :", error);
-  }
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),  // Conversion en JSON
+      });
+
+      const responseData = await response.json();
+      console.log('Réponse du serveur :', responseData);
+      alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi :', error);
+    }
+  };
+
+  reader.onerror = function () {
+    alert('Erreur lors de la lecture du fichier');
+  };
+
+  reader.readAsText(fichier);  // Lire le fichier en tant que texte
 };
 
-
-  //fonction pour le drag and drop du fichier
-    let dropzonefile = ref("")
-    const drop = async (e) => {
+// Fonction pour le drag and drop du fichier
+let dropzonefile = ref("");
+const drop = (e) => {
   e.preventDefault();
   const fichier = e.dataTransfer.files[0];
-  await envoyerFichier(fichier); // appel de la fonction envoyerFichier
+  // gestion il faut que le fichier soit .txt pour être lu correctement
+  if (!fichier || fichier.type !== "text/plain") {
+    alert("Veuillez sélectionner un fichier .txt");
+    return;
+  }
+  dropzonefile.value = fichier;  //mettre à jour la variable pour l'afficher (Fichier :)
+  lireFichierEnvoyer(fichier); // Appel de la fonction envoyerFichier
+  
 };
 
-    
-
-    //fonction lorsque l'utilisateur selectionne un fichier via son os
-    const selectedFile = () => {
+// Fonction lorsque l'utilisateur sélectionne un fichier via son OS
+const selectedFile = () => {
   const fichier = document.querySelector('.dropzonefile').files[0];
-  envoyerFichier(fichier);
+  if (!fichier || fichier.type !== "text/plain") {
+    alert("Veuillez sélectionner un fichier .txt");
+    return;
+  }
+  dropzonefile.value = fichier;
+  lireFichierEnvoyer(fichier);  
 };
 
-    return {textInput ,envoyerTexte, dropzonefile, drop, selectedFile};
+return { textInput, envoyerTexte, dropzonefile, drop, selectedFile };
   }
 }
 </script>
@@ -149,4 +193,51 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+#contributeurs {
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+}
+
+#contributeurs h3 {
+  margin-bottom: 15px;
+}
+
+#contributeurs ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#contributeurs li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#contributeurs a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#contributeurs .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  transition: transform 0.3s ease;
+}
+
+#contributeurs .avatar:hover {
+  transform: scale(1.1);
+}
+
 </style>
