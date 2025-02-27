@@ -4,3 +4,9 @@ spacy
 scikit-learn
 seaborn
 matplotlib
+fastapi
+transformers
+torch
+uvicorn
+black
+ruff
