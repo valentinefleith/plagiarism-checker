@@ -1,0 +1,6 @@
+requests
+beautifulsoup4
+spacy
+scikit-learn
+seaborn
+matplotlib
