@@ -31,11 +31,9 @@ run: $(VENV)
 	@echo "$(BLUE)Running project...(RESET)"
 	$(VENV)/bin/python -m uvicorn backend.main:app --reload
 
-#test: $(VENV)
-	#@echo "$(CYAN)Running tests with pytest...$(RESET)"
-	#$(PYTEST) $(TESTS_DIR) --maxfail=1
-
-# check: format lint test
+test: $(VENV)
+	@echo "$(CYAN)Running tests with pytest...$(RESET)"
+	$(PYTEST) $(TESTS_DIR) --maxfail=1
 
 corpus: $(VENV)
 	@echo "$(BLUE)Downloading corpus...(RESET)"
@@ -49,7 +47,7 @@ lint: $(VENV)
 	@echo "$(CYAN)Running Ruff lint...$(RESET)"
 	$(RUFF) check . --fix
 
-check: format lint
+check: format lint test
 	@echo "$(GREEN)✅ Code is ready to commit!$(RESET)"
 
 
