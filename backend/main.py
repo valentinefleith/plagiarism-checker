@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
+from torch.nn.functional import softmax
 from backend.models import TextPost
 
 app = FastAPI()
@@ -31,5 +32,12 @@ async def predict_class(text: TextPost):
     ).to(device)
 
     outputs = model(**inputs)
+    probas = softmax(outputs.logits, dim=1).cpu().detach().numpy()
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
-    return {"prediction": label_encoder.inverse_transform([predicted_class])[0]}
+    predicted_classname = label_encoder.inverse_transform([predicted_class])[0]
+    proba = (
+        probas[0].tolist()[0]
+        if predicted_classname == "human"
+        else probas[0].tolist()[1]
+    )
+    return {"prediction": predicted_classname, "probability": round(proba * 100, 1)}

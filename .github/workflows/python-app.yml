@@ -26,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install fastapi httpx pytest
+        pip install fastapi httpx pytest transformers torch
     - name: Test with pytest
       run: |
         pytest tests
