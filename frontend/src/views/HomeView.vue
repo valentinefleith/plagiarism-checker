@@ -7,6 +7,14 @@
         <button @click="envoyerTexte">Envoyer</button>
     </div>
 
+   <!-- Affichage de la modale si isModalVisible est vrai -->
+   <ModaleComponant 
+      v-if="isModalVisible" 
+      :data="resultats" 
+      :isVisible="isModalVisible" 
+      @close="isModalVisible = false" 
+    />
+
     <DropZone @drop.prevent="drop" @change="selectedFile"/>
     <span class="file-info">Fichier : {{ dropzonefile.name }}</span>
     <div id="contributeurs"><h3>Contributeurs</h3>
@@ -35,16 +43,22 @@
 <script>
 // @ is an alias to /src
 import DropZone from '@/components/DropZone.vue';
+import ModaleComponant from '@/components/ModaleComponant.vue';
 import {ref} from "vue"
 
 export default {
   name: 'HomeView',
   components: {
-    DropZone
+    DropZone,
+    ModaleComponant
   },
   setup() {
+    
+    const resultats = ref({});
+    const textInput = ref("");
+    const isModalVisible = ref(false);
 
-    const textInput = ref("")
+
         // Fonction pour récupérer le texte 
         const envoyerTexte = async () => {
     if (!textInput.value.trim()) {
@@ -52,20 +66,28 @@ export default {
       return;
     }
     try {
-      const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ texte: textInput.value }),
-      });
+    const response = await fetch("http://127.0.0.1:8000/prediction/", { // Remplace par ton API
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ body: textInput.value }),
 
-      const data = await response.json();
-      console.log("Réponse du serveur :", data);
-    } catch (error) {
-      console.error("Erreur lors de l'envoi :", error);
-    }
-  };
+      
+    });
+
+    const data = await response.json();
+    console.log("Réponse du serveur :", data);
+    resultats.value = data; 
+    console.log("Contenu de resultats.value :", resultats.value);
+    // Ouvrir la modale après la réponse
+    isModalVisible.value = true;
+
+
+  } catch (error) {
+    console.error("Erreur lors de l'envoi :", error);
+  }
+};
 
   //cette fonction va lire le fichier et envoyer le contenu
   const lireFichierEnvoyer = async (fichier) => {
@@ -97,6 +119,8 @@ export default {
     } catch (error) {
       console.error('Erreur lors de l\'envoi :', error);
     }
+
+    
   };
 
   reader.onerror = function () {
@@ -132,7 +156,7 @@ const selectedFile = () => {
   lireFichierEnvoyer(fichier);  
 };
 
-return { textInput, envoyerTexte, dropzonefile, drop, selectedFile };
+return { textInput, envoyerTexte, resultats, isModalVisible, dropzonefile, drop, selectedFile };
   }
 }
 </script>

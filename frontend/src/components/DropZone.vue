@@ -21,7 +21,7 @@ export default {
   emits: ['file-selected'], // On émettra un événement avec le fichier
   setup(props, { emit }) {
     const active = ref(false);
-
+    
     const toggleActive = () => {
       active.value = !active.value;
     };
