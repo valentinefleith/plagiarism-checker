@@ -1,11 +1,14 @@
 <template>
   <div class="home">
-    <h1>Test</h1>
+    <h1>Plagiat Detector</h1>
     <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
     <div class="textarea-container">    
          <textarea v-model="textInput" placeholder="Collez votre texte ici..."></textarea> <!-- on utilise v-model -->
         <button @click="envoyerTexte">Envoyer</button>
     </div>
+
+   <!-- Ajout d'un bouton pour accéder à la doc -->
+   <button class="doc-button" @click="goToDocs">📖 Voir la doc ✨</button>
 
    <!-- Affichage de la modale si isModalVisible est vrai -->
    <ModaleComponant 
@@ -45,6 +48,7 @@
 import DropZone from '@/components/DropZone.vue';
 import ModaleComponant from '@/components/ModaleComponant.vue';
 import {ref} from "vue"
+import { useRouter } from "vue-router";  // Import du router
 
 export default {
   name: 'HomeView',
@@ -162,7 +166,13 @@ const selectedFile = () => {
   lireFichierEnvoyer(fichier);  
 };
 
-return { textInput, envoyerTexte, resultats, isModalVisible, dropzonefile, drop, selectedFile };
+const router = useRouter(); // Récupération du router pour la navigation
+
+const goToDocs = () => {
+  router.push("/docs"); // Redirection vers la page de documentation
+};
+
+return { textInput, envoyerTexte, resultats, isModalVisible, dropzonefile, drop, selectedFile, goToDocs };
   }
 }
 </script>
@@ -222,6 +232,26 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.doc-button {
+  margin-top: 20px;
+  background-color: #007BFF; 
+  color: #ffffff;  
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: 2px solid #0056b3; 
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.doc-button:hover {
+  background-color: #3399FF; 
+  border-color: #004085; 
+  transform: scale(1.05);
 }
 
 #contributeurs {
