@@ -4,8 +4,7 @@
       <!-- la croix -->
       <span class="close" @click="closeModal">&times;</span>
       <h2>Résultats de l'analyse</h2>
-      <p>Prediction : {{ data.prediction }}</p>
-      <p>Probability : {{ data.probability }}%</p>
+      <p>Probability de plagiat : {{ computeMean }}%</p>
       <button @click="redirectToPage">Voir les détails des résultats</button>
     </div>
   </div>
@@ -18,6 +17,15 @@ export default {
     data: Object,        // Données envoyées au composant
     text: String,
     isVisible: Boolean,  // Contrôle de la visibilité de la modale
+  },
+  computed: {
+    computeMean() {
+      let total = 0;
+      for (let i = 0; i < this.data.length; i++) {
+        total += this.data[i].probability;
+      }
+      return total / this.data.length
+    }
   },
   methods: {
     closeModal() {
