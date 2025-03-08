@@ -21,8 +21,8 @@
       <div class="markdown-content" v-html="markdownContent"></div>
     </div>
     <button v-show="showScrollTop" @click="scrollToTop" class="scroll-top">⬆️</button>
-
   </div>
+  <div class="progress-bar" :style="{ width: scrollProgress + '%' }"></div>
 </template>
 
 <script>
@@ -103,7 +103,19 @@ export default {
       window.addEventListener("scroll", checkScroll);
     });
 
-    return { markdownContent, headers, activeSection, setActiveSection, showScrollTop, scrollToTop };
+    const scrollProgress = ref(0);
+
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.value = (scrollTop / scrollHeight) * 100;
+    };
+
+    onMounted(() => {
+      window.addEventListener("scroll", updateScrollProgress);
+    });
+
+    return { markdownContent, headers, activeSection, setActiveSection, showScrollTop, scrollToTop, scrollProgress }
   },
 };
 </script>
@@ -248,4 +260,14 @@ export default {
 .scroll-top:hover {
   background: #0056b3;
 }
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: #ff4081;
+  transition: width 0.2s;
+}
+
 </style>
