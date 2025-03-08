@@ -3,26 +3,32 @@ SPA project for detecting plagiarism in documents, with a focus on identifying c
 
 You can visit our project at here : http://146.59.237.23/
 
-## For dev purposes only
+## For dev purposes
+
 ### Prerequisites
 - Node.js version 18.x (to run the frontend)
 - Vue.js (used for the frontend)
 - Python (for data processing)
+  
 ### Installation
 
 ```sh
 git clone git@github.com:valentinefleith/plagiarism-checker.git && cd plagiarism-checker
 ```
 
-### Download data
-
-```sh
-make corpus
+Download python dependencies:
 ```
-If not working:
-```sh
-make
-.venv/bin/python src/corpus/download_corpus.py
+make setup
+```
+
+
+### Start backend server
+
+You can pull the model using `git lfs`. If it's not available for you, the model is downloadable [here](https://drive.google.com/drive/folders/1Y0Nees4Q0ghGcsctCkXw9fI_qvv0QOEn?usp=sharing).
+
+Then to start serveur run:
+```
+make run
 ```
 
 ## Project setup
