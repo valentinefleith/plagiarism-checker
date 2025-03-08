@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-      <h1>IA Detector</h1>
+      <h1>Détecteur de plagiat par IA</h1>
       <div v-if="resultats.length">
         <h2>Résultats de l'analyse</h2>
         <ul class="results-list">

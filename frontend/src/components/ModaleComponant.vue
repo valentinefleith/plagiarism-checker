@@ -4,7 +4,7 @@
       <!-- la croix -->
       <span class="close" @click="closeModal">&times;</span>
       <h2>Résultats de l'analyse</h2>
-      <p>Probability de plagiat : {{ computeMean }}%</p>
+      <p>Probabilité de plagiat : {{ computeMean }}%</p>
       <button @click="redirectToPage">Voir les détails des résultats</button>
     </div>
   </div>

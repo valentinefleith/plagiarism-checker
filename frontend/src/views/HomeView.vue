@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <h1>Plagiat Detector</h1>
-    <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
+    <h1>Détecteur de plagiat par IA</h1>
+    <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier (format .txt).</p>
     <div class="textarea-container">    
          <textarea v-model="textInput" placeholder="Collez votre texte ici..."></textarea> <!-- on utilise v-model -->
         <button @click="envoyerTexte">Envoyer</button>
@@ -223,7 +223,7 @@ textarea {
   font-size: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  resize: none;
+  //resize: none;
   padding-bottom: 40px; 
 }
 
