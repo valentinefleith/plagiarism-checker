@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <h1>IA Detector</h1>
+    <h1>Test</h1>
     <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
-    <div class="textarea-container">
+    <div class="textarea-container">    
          <textarea v-model="textInput" placeholder="Collez votre texte ici..."></textarea> <!-- on utilise v-model -->
         <button @click="envoyerTexte">Envoyer</button>
     </div>
@@ -57,7 +57,7 @@ export default {
     const resultats = ref({});
     const textInput = ref("");
     const isModalVisible = ref(false);
-
+  
 
         // Fonction pour récupérer le texte 
         const envoyerTexte = async () => {
@@ -65,28 +65,29 @@ export default {
       console.log("Le texte est vide !");
       return;
     }
-    try {
-    const response = await fetch("http://146.59.237.23:8000/prediction/", { // Remplace par ton API
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ body: textInput.value }),
+    const phrases = textInput.value.split("\n").filter(line => line.trim() !== "");
 
-      
-    });
+try {
+  const responses = await Promise.all(
+    phrases.map(async (phrase) => {
+      const response = await fetch("http://146.59.237.23:8000/prediction/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ body: phrase }),
+      });
 
-    const data = await response.json();
-    console.log("Réponse du serveur :", data);
-    resultats.value = data; 
-    console.log("Contenu de resultats.value :", resultats.value);
-    // Ouvrir la modale après la réponse
-    isModalVisible.value = true;
+      return response.json();
+    })
+  );
 
+  console.log(responses);
+  isModalVisible.value = true;
 
-  } catch (error) {
-    console.error("Erreur lors de l'envoi :", error);
-  }
+} catch (error) {
+  console.error("Erreur lors de l'envoi :", error);
+}
 };
 
   //cette fonction va lire le fichier et envoyer le contenu

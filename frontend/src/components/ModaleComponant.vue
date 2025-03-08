@@ -47,7 +47,8 @@ export default {
   background-color: white;
   padding: 20px;
   border-radius: 5px;
-  width: 300px;
+  width: 500px;
+  height: 200px;
   text-align: center;
   position: relative;
   height: 150px;
