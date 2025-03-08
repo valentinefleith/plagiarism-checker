@@ -21,13 +21,16 @@
       <div class="markdown-content" v-html="markdownContent"></div>
     </div>
     <button v-show="showScrollTop" @click="scrollToTop" class="scroll-top">⬆️</button>
+    <button @click="goToHome" class="home-button">🏠 Accueil</button>
   </div>
   <div class="progress-bar" :style="{ width: scrollProgress + '%' }"></div>
+  
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
 import { marked } from "marked";
+import { useRouter } from "vue-router";
 
 export default {
   name: "DocsProject",
@@ -115,7 +118,13 @@ export default {
       window.addEventListener("scroll", updateScrollProgress);
     });
 
-    return { markdownContent, headers, activeSection, setActiveSection, showScrollTop, scrollToTop, scrollProgress }
+    const router = useRouter();
+
+    const goToHome = () => {
+      router.push("/");
+    };
+
+    return { markdownContent, headers, activeSection, setActiveSection, showScrollTop, scrollToTop, scrollProgress, goToHome };
   },
 };
 </script>
@@ -268,6 +277,25 @@ export default {
   height: 5px;
   background: #ff4081;
   transition: width 0.2s;
+}
+
+.home-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: #ff4081;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s;
+}
+
+.home-button:hover {
+  background: #ff6699;
 }
 
 </style>
