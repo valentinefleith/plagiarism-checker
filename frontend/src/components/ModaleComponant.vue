@@ -6,6 +6,7 @@
       <h2>Résultats de l'analyse</h2>
       <p>Prediction : {{ data.prediction }}</p>
       <p>Probability : {{ data.probability }}%</p>
+      <button @click="redirectToPage">Voir les détails des résultats</button>
     </div>
   </div>
 </template>
@@ -21,6 +22,9 @@ export default {
     closeModal() {
       this.$emit("close");  // Émet l'événement "close" pour masquer la modale
     },
+    redirectToPage() {
+      this.$router.push('/resultats');
+    }
   },
 };
 </script>
@@ -45,7 +49,8 @@ export default {
   border-radius: 5px;
   width: 300px;
   text-align: center;
-  position: relative; 
+  position: relative;
+  height: 150px;
 }
 
 .close {
@@ -60,4 +65,24 @@ export default {
 .close:hover {
   color: red; 
 }
+
+button {
+  position: relative;
+  right: 50;
+  transform: (42px, 18px);
+  bottom: -31px;
+  padding: 8px 15px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
 </style>
