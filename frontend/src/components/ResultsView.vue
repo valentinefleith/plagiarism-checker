@@ -1,13 +1,6 @@
 <template>
     <div class="home">
       <h1>IA Detector</h1>
-
-        <div>
-          <h1>Résultats de l'Analyse</h1>
-          <p><strong>Texte analysé :</strong> {{ textinput }}</p>
-          <p><strong>Prédiction :</strong> {{ resultats }}</p>
-          <p><strong>Probabilité :</strong> {{ resultats }}%</p>
-        </div>
       <div v-if="resultats.length">
         <h2>Résultats de l'analyse</h2>
         <ul>
@@ -52,7 +45,7 @@ export default {
 
     // Initialisation des variables
     const resultats = ref(route.query.data || "Pas de donnees");
-    const textinput = ref(route.query.textinput || "Non disponible");
+  
 
     // Vérification de la data reçue
     if (route.query.data) {
@@ -68,7 +61,7 @@ export default {
     }
 
 
-    return { resultats, textinput };
+    return { resultats };
   }
 };
 

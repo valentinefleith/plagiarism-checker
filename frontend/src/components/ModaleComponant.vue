@@ -25,13 +25,11 @@ export default {
     },
     redirectToPage() {
       console.log("Données envoyées : ", this.data);
-      console.log("Texte envoyé : ", this.text);
-
         this.$router.push({
           path: "/results",
           query: {
             data: JSON.stringify(this.data),  // Convertir en JSON seulement si `data` est valide
-            textinput: this.text || ""         // Ajouter textinput
+            
           }
         }).then(() => {
           this.$router.replace({ path: '/results' }); // On remplace l'URL sans query params

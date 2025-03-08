@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Test</h1>
+    <h1>IA detector</h1>
     <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
     <div class="textarea-container">    
          <textarea v-model="textInput" placeholder="Collez votre texte ici..."></textarea> <!-- on utilise v-model -->
@@ -74,7 +74,7 @@ export default {
 try {
   const responses = await Promise.all(
     phrases.map(async (phrase) => {
-      const response = await fetch("http://146.59.237.23:8000/prediction/", {
+      const response = await fetch("http://127.0.0.1:8000/prediction/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,6 +87,9 @@ try {
   );
 
   console.log(responses);
+  resultats.value = responses;
+
+  console.log("Données envoyées à la modale :", resultats.value);
   isModalVisible.value = true;
 
 } catch (error) {
@@ -105,37 +108,48 @@ try {
 
   reader.onload = async function (e) {
     const fileContent = e.target.result;  // Contenu du fichier
-    // console.log("Contenu du fichier lu :", fileContent);
-    const data = {
-      body: fileContent,  // Ajout du contenu dans l'objet
-    };
+    // Découper le contenu du fichier en lignes (comme pour envoyerTexte)
+    const lignes = fileContent.split("\n").filter(line => line.trim() !== "");
 
     try {
-      const response = await fetch('http://146.59.237.23:8000/prediction/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),  // Conversion en JSON
-      });
+      // Envoyer chaque ligne à l'API de manière asynchrone
+      const responses = await Promise.all(
+        lignes.map(async (ligne) => {
+          const data = { body: ligne }; // Préparer chaque ligne à envoyer
+          const response = await fetch('http://146.59.237.23:8000/prediction/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),  // Envoi de chaque ligne
+          });
 
+          return response.json(); // Retourne la réponse du serveur pour chaque ligne
+        })
+      );
 
-      const responseData = await response.json();
-      console.log('Réponse du serveur :', responseData);
-      resultats.value = responseData;  // ça met à jour la variable réactive  !!!!!! important 
+      console.log('Réponses du serveur :', responses);
+
+      // Mettre à jour les résultats avec la réponse du serveur
+      resultats.value = responses;  // Utiliser `responses` ici pour mettre à jour
+
       console.log("Résultats mis à jour :", resultats.value);
+
+      // Afficher la modale
       isModalVisible.value = true;
 
+      // Redirection vers la page des résultats
       router.push({
         name: "ResultatsView",
-        state: { text: textInput.value, resultats: resultats }
-      })
+        query: { text: textInput.value, resultats: JSON.stringify(resultats.value) }
+      });
+
+      // Optionnel : message de confirmation
       // alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
+
     } catch (error) {
       console.error('Erreur lors de l\'envoi :', error);
     }
-
-    
   };
 
   reader.onerror = function () {
