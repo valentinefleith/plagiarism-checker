@@ -26,7 +26,7 @@ make setup
 
 You can pull the model using `git lfs`. If it's not available for you, the model is downloadable [here](https://drive.google.com/drive/folders/1Y0Nees4Q0ghGcsctCkXw9fI_qvv0QOEn?usp=sharing).
 
-Then to start serveur run:
+Then to start the server run:
 ```
 make run
 ```
