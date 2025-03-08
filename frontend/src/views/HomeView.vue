@@ -10,7 +10,8 @@
    <!-- Affichage de la modale si isModalVisible est vrai -->
    <ModaleComponant 
       v-if="isModalVisible" 
-      :data="resultats" 
+      :data="resultats"
+      :text="textInput"
       :isVisible="isModalVisible" 
       @close="isModalVisible = false" 
     />
@@ -45,6 +46,7 @@
 import DropZone from '@/components/DropZone.vue';
 import ModaleComponant from '@/components/ModaleComponant.vue';
 import {ref} from "vue"
+import {useRouter} from "vue-router";
 
 export default {
   name: 'HomeView',
@@ -53,7 +55,9 @@ export default {
     ModaleComponant
   },
   setup() {
-    
+
+    //const route = useRoute();
+    const router = useRouter();
     const resultats = ref({});
     const textInput = ref("");
     const isModalVisible = ref(false);
@@ -121,6 +125,11 @@ try {
       resultats.value = responseData;  // ça met à jour la variable réactive  !!!!!! important 
       console.log("Résultats mis à jour :", resultats.value);
       isModalVisible.value = true;
+
+      router.push({
+        name: "ResultatsView",
+        state: { text: textInput.value, resultats: resultats }
+      })
       // alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
     } catch (error) {
       console.error('Erreur lors de l\'envoi :', error);
@@ -161,6 +170,7 @@ const selectedFile = () => {
   dropzonefile.value = fichier;
   lireFichierEnvoyer(fichier);  
 };
+
 
 return { textInput, envoyerTexte, resultats, isModalVisible, dropzonefile, drop, selectedFile };
   }

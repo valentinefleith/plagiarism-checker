@@ -52,4 +52,4 @@ async def predict_class(text: TextPost):
         if predicted_classname == "human"
         else probas[0].tolist()[1]
     )
-    return {"prediction": predicted_classname, "probability": round(proba * 100, 1)}
+    return {"text": text, "prediction": predicted_classname, "probability": round(proba * 100, 1)}

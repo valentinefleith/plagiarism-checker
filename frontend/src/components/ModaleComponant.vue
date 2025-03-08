@@ -16,6 +16,7 @@ export default {
   name: "ModaleComponant",
   props: {
     data: Object,        // Données envoyées au composant
+    text: String,
     isVisible: Boolean,  // Contrôle de la visibilité de la modale
   },
   methods: {
@@ -23,10 +24,21 @@ export default {
       this.$emit("close");  // Émet l'événement "close" pour masquer la modale
     },
     redirectToPage() {
-      this.$router.push('/resultats');
+      console.log("Données envoyées : ", this.data);
+      console.log("Texte envoyé : ", this.text);
+
+        this.$router.push({
+          path: "/results",
+          query: {
+            data: JSON.stringify(this.data),  // Convertir en JSON seulement si `data` est valide
+            textinput: this.text || ""         // Ajouter textinput
+          }
+        }).then(() => {
+          this.$router.replace({ path: '/results' }); // On remplace l'URL sans query params
+        });
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

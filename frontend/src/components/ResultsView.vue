@@ -1,12 +1,17 @@
 <template>
     <div class="home">
       <h1>IA Detector</h1>
-      <p>Collez le texte que vous soupçonnez avoir été écrit par IA, ou joignez le fichier avec le drag and drop</p>
-      
-      <div v-if="results.length">
+
+        <div>
+          <h1>Résultats de l'Analyse</h1>
+          <p><strong>Texte analysé :</strong> {{ textinput }}</p>
+          <p><strong>Prédiction :</strong> {{ resultats }}</p>
+          <p><strong>Probabilité :</strong> {{ resultats }}%</p>
+        </div>
+      <div v-if="resultats.length">
         <h2>Résultats de l'analyse</h2>
         <ul>
-          <li v-for="(result, index) in results" :key="index">
+          <li v-for="(result, index) in resultats" :key="index">
         
             <p>{{ result }}</p>
           </li>
@@ -35,22 +40,40 @@
       </div>
     </div>
   </template>
-  
-  <script>
-  import { useRoute } from 'vue-router'; 
 
-  export default {
-    name: 'ResultsView',
-    setup() {
-      const route = useRoute();
-      const results = route.params.results || []; 
-  
-      return { results };
+<script>
+import { useRoute,  } from "vue-router";
+import {  ref } from "vue";
+
+export default {
+  name: "ResultsView",
+  setup() {
+    const route = useRoute();
+
+    // Initialisation des variables
+    const resultats = ref(route.query.data || "Pas de donnees");
+    const textinput = ref(route.query.textinput || "Non disponible");
+
+    // Vérification de la data reçue
+    if (route.query.data) {
+      try {
+        resultats.value = JSON.parse(route.query.data);
+        console.log("Résultats après parsing :", resultats.value);
+      } catch (error) {
+        console.error("Erreur lors du parsing des données JSON :", error);
+        resultats.value = [];  // Remettre à un tableau vide en cas d'erreur
+      }
+    } else {
+      console.warn("Aucune donnée de prédiction reçue !");
     }
+
+
+    return { resultats, textinput };
   }
-  </script>
-  
-  <style lang="scss" scoped>
+};
+
+</script>
+<style lang="scss" scoped>
   .home {
     height: 100vh;
     display: flex;
