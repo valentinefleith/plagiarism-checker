@@ -66,7 +66,7 @@ export default {
       return;
     }
     try {
-    const response = await fetch("http://127.0.0.1:8000/prediction/", { // Remplace par ton API
+    const response = await fetch("http://146.59.237.23:8000/prediction/", { // Remplace par ton API
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,12 +100,13 @@ export default {
 
   reader.onload = async function (e) {
     const fileContent = e.target.result;  // Contenu du fichier
+    // console.log("Contenu du fichier lu :", fileContent);
     const data = {
-      contenuFichier: fileContent,  // Ajout du contenu dans l'objet
+      body: fileContent,  // Ajout du contenu dans l'objet
     };
 
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      const response = await fetch('http://146.59.237.23:8000/prediction/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,9 +114,13 @@ export default {
         body: JSON.stringify(data),  // Conversion en JSON
       });
 
+
       const responseData = await response.json();
       console.log('Réponse du serveur :', responseData);
-      alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
+      resultats.value = responseData;  // ça met à jour la variable réactive  !!!!!! important 
+      console.log("Résultats mis à jour :", resultats.value);
+      isModalVisible.value = true;
+      // alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
     } catch (error) {
       console.error('Erreur lors de l\'envoi :', error);
     }
