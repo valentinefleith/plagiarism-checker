@@ -1,176 +1,121 @@
 <template>
-    <div class="home">
-      <h1>IA Detector</h1>
-      <div v-if="resultats.length">
-        <h2>Résultats de l'analyse</h2>
-        <ul class="results-list">
-        <li v-for="(result, index) in resultats" :key="index" class="result-item">
-          <p>{{ result }}</p>
+  <div class="home">
+    <h1>IA Detector</h1>
+    <div v-if="resultats.length" class="results-container">
+      <h2>Estimation du pourcentage</h2>
+      <ul class="results-list">
+        <li v-for="(result, index) in resultats" :key="index" class="result-card">
+          <div class="result-content">
+            <p class="result-text">{{ result.text }}</p>
+            <span class="percentage-badge" :class="getPercentageClass(result.probability)">
+              {{ result.probability }}%
+            </span>
+          </div>
         </li>
       </ul>
-      </div>
     </div>
-  </template>
+  </div>
+</template>
 
 <script>
-import { useRoute,  } from "vue-router";
-import {  ref } from "vue";
+import { useRoute } from "vue-router";
+import { ref } from "vue";
 
 export default {
   name: "ResultsView",
   setup() {
     const route = useRoute();
 
-    // Initialisation des variables
-    const resultats = ref(route.query.data || "Pas de donnees");
-  
+    
+    const resultats = ref(route.query.data ? JSON.parse(route.query.data) : []);
 
-    // Vérification de la data reçue
-    if (route.query.data) {
-      try {
-        resultats.value = JSON.parse(route.query.data);
-        console.log("Résultats après parsing :", resultats.value);
-      } catch (error) {
-        console.error("Erreur lors du parsing des données JSON :", error);
-        resultats.value = [];  // Remettre à un tableau vide en cas d'erreur
-      }
-    } else {
-      console.warn("Aucune donnée de prédiction reçue !");
-    }
+    const getPercentageClass = (probability) => {
+      if (probability >= 75) return "fort";
+      if (probability >= 50) return "moyen";
+      return "bas";
+    };
 
-
-    return { resultats };
+    return { resultats, getPercentageClass };
   }
 };
-
 </script>
+
 <style lang="scss" scoped>
-  .home {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #f1f1f1;
-  }
-  
-  h1 {
-    font-size: 40px;
-    margin-bottom: 32px;
-  }
-  
-  .file-info {
-    margin-top: 32px;
-  }
-  
-  .textarea-container {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    font-size: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-    padding-bottom: 40px; 
-  }
-  
-  button {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  #contributeurs {
-    text-align: center;
-    position: absolute;
-    bottom: 10px;
-  }
-  
-  #contributeurs h3 {
-    margin-bottom: 15px;
-  }
-  
-  #contributeurs ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  #contributeurs li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #contributeurs a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #contributeurs .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #333;
-    transition: transform 0.3s ease;
-  }
-  
-  #contributeurs .avatar:hover {
-    transform: scale(1.1);
-  }
-  
-  ul {
-  list-style-type: none;
-  padding-left: 0; 
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9fafb;
+  padding: 20px;
 }
 
-.result-item {
-  background-color: #fafafa;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 15px;
-  font-size: 16px;
+h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
   color: #333;
-  border-left: 5px solid #007bff; 
-  box-sizing: border-box;
-  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.result-item:hover {
-  background-color: #e8f4fd;
-  transform: translateX(5px);
+.results-container {
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-.result-item:last-child {
-  margin-bottom: 0; 
+.results-list {
+  list-style: none;
+  padding: 0;
 }
 
-  </style>
+.result-card {
+  background: #ffffff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-3px);
+}
+
+.result-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-text {
+  flex: 1;
+  font-size: 16px;
+  color: #555;
+}
+
+.percentage-badge {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  min-width: 60px;
+}
+
+.fort {
+  background-color: #dc3545;
+}
+
+.moyen {
+  background-color: #ffc107;
+}
+
+.bas {
+  background-color: #28a745;
+}
+</style>
