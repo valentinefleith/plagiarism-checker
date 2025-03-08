@@ -3,6 +3,7 @@ SPA project for detecting plagiarism in documents, with a focus on identifying c
 
 You can visit our project at here : http://146.59.237.23/
 
+## For dev purposes only
 ### Prerequisites
 - Node.js version 18.x (to run the frontend)
 - Vue.js (used for the frontend)
