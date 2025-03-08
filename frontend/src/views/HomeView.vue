@@ -46,7 +46,7 @@
 import DropZone from '@/components/DropZone.vue';
 import ModaleComponant from '@/components/ModaleComponant.vue';
 import {ref} from "vue"
-import {useRouter} from "vue-router";
+// import {useRouter} from "vue-router";
 
 export default {
   name: 'HomeView',
@@ -56,8 +56,6 @@ export default {
   },
   setup() {
 
-    //const route = useRoute();
-    const router = useRouter();
     const resultats = ref({});
     const textInput = ref("");
     const isModalVisible = ref(false);
@@ -81,14 +79,13 @@ try {
         },
         body: JSON.stringify({ body: phrase }),
       });
-
+      console.log(response)
       return response.json();
     })
   );
 
   console.log(responses);
   resultats.value = responses;
-
   console.log("Données envoyées à la modale :", resultats.value);
   isModalVisible.value = true;
 
@@ -107,45 +104,35 @@ try {
   const reader = new FileReader();
 
   reader.onload = async function (e) {
-    const fileContent = e.target.result;  // Contenu du fichier
+    const fileContent = e.target.result;
     // Découper le contenu du fichier en lignes (comme pour envoyerTexte)
     const lignes = fileContent.split("\n").filter(line => line.trim() !== "");
-
+    // console.log(lignes);
     try {
-      // Envoyer chaque ligne à l'API de manière asynchrone
       const responses = await Promise.all(
         lignes.map(async (ligne) => {
-          const data = { body: ligne }; // Préparer chaque ligne à envoyer
-          const response = await fetch('http://146.59.237.23:8000/prediction/', {
+          const data = { body: ligne }; // on prépare chaque ligne à envoyer
+          const response = await fetch('http://127.0.0.1:8000/prediction/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),  // Envoi de chaque ligne
+            body: JSON.stringify(data),  
           });
 
-          return response.json(); // Retourne la réponse du serveur pour chaque ligne
+          const result = await response.json();
+          return {
+            text: ligne,  
+            prediction: result.prediction,  
+            probability: result.probability, 
+          };
         })
       );
 
-      console.log('Réponses du serveur :', responses);
-
-      // Mettre à jour les résultats avec la réponse du serveur
-      resultats.value = responses;  // Utiliser `responses` ici pour mettre à jour
-
+      console.log('Réponses du serveur avec texte :', responses);
+      resultats.value = responses;
       console.log("Résultats mis à jour :", resultats.value);
-
-      // Afficher la modale
       isModalVisible.value = true;
-
-      // Redirection vers la page des résultats
-      router.push({
-        name: "ResultatsView",
-        query: { text: textInput.value, resultats: JSON.stringify(resultats.value) }
-      });
-
-      // Optionnel : message de confirmation
-      // alert(`Le fichier a été envoyé avec succès ! ID du fichier : ${responseData.id}`);
 
     } catch (error) {
       console.error('Erreur lors de l\'envoi :', error);
@@ -156,8 +143,9 @@ try {
     alert('Erreur lors de la lecture du fichier');
   };
 
-  reader.readAsText(fichier);  // Lire le fichier en tant que texte
+  reader.readAsText(fichier);
 };
+
 
 // Fonction pour le drag and drop du fichier
 let dropzonefile = ref("");

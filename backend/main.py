@@ -47,9 +47,10 @@ async def predict_class(text: TextPost):
     probas = softmax(outputs.logits, dim=1).cpu().detach().numpy()
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
     predicted_classname = label_encoder.inverse_transform([predicted_class])[0]
-    proba = (
-        probas[0].tolist()[0]
-        if predicted_classname == "human"
-        else probas[0].tolist()[1]
-    )
+    # proba = (
+    #     probas[0].tolist()[0]
+    #     if predicted_classname == "human"
+    #     else probas[0].tolist()[1]
+    # )
+    proba = probas[0].tolist()[1]
     return {"text": text.body, "prediction": predicted_classname, "probability": round(proba * 100, 1)}

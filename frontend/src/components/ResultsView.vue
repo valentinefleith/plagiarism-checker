@@ -3,33 +3,11 @@
       <h1>IA Detector</h1>
       <div v-if="resultats.length">
         <h2>Résultats de l'analyse</h2>
-        <ul>
-          <li v-for="(result, index) in resultats" :key="index">
-        
-            <p>{{ result }}</p>
-          </li>
-        </ul>
-      </div>
-  
-      <div id="contributeurs">
-        <h3>Contributeurs</h3>
-        <ul>
-          <li>
-            <a href="https://github.com/Batouuuuu" target="_blank">
-              <img src="https://github.com/Batouuuuu.png" alt="Utilisateur 2" class="avatar">
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/valentinefleith" target="_blank">
-              <img src="https://github.com/valentinefleith.png" alt="Utilisateur 2" class="avatar">
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/deboraptor" target="_blank">
-              <img src="https://github.com/deboraptor.png" alt="Utilisateur 2" class="avatar">
-            </a>
-          </li>
-        </ul>
+        <ul class="results-list">
+        <li v-for="(result, index) in resultats" :key="index" class="result-item">
+          <p>{{ result }}</p>
+        </li>
+      </ul>
       </div>
     </div>
   </template>
@@ -169,4 +147,30 @@ export default {
     transform: scale(1.1);
   }
   
+  ul {
+  list-style-type: none;
+  padding-left: 0; 
+}
+
+.result-item {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+  border-left: 5px solid #007bff; 
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.result-item:hover {
+  background-color: #e8f4fd;
+  transform: translateX(5px);
+}
+
+.result-item:last-child {
+  margin-bottom: 0; 
+}
+
   </style>
