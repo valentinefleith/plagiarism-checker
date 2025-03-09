@@ -52,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,7 +69,7 @@ h1 {
 
 .results-container {
   width: 80%;
-  max-width: 600px;
+  max-width: 800px;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
