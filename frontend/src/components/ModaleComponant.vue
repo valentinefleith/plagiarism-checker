@@ -24,7 +24,8 @@ export default {
       for (let i = 0; i < this.data.length; i++) {
         total += this.data[i].probability;
       }
-      return total / this.data.length
+      let avg = total / this.data.length
+      return Math.round(avg * 100) / 100
     }
   },
   methods: {

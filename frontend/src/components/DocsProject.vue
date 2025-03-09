@@ -17,11 +17,11 @@
     </aside>
 
     <div class="nouvelle-page">
-      <h1>Bienvenue sur la doc !</h1>
+      <h1>Documentation</h1>
       <div class="markdown-content" v-html="markdownContent"></div>
     </div>
     <button v-show="showScrollTop" @click="scrollToTop" class="scroll-top">⬆️</button>
-    <button @click="goToHome" class="home-button">🏠 Accueil</button>
+    <button @click="goToHome" class="home-button">Accueil</button>
   </div>
   <div class="progress-bar" :style="{ width: scrollProgress + '%' }"></div>
   

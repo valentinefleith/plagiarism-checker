@@ -8,7 +8,7 @@
     </div>
 
    <!-- Ajout d'un bouton pour accéder à la doc -->
-   <button class="doc-button" @click="goToDocs">📖 Voir la doc ✨</button>
+   <button class="doc-button" @click="goToDocs">Voir la doc</button>
 
    <!-- Affichage de la modale si isModalVisible est vrai -->
    <ModaleComponant 

@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Détecteur de plagiat par IA</h1>
     <div v-if="resultats.length" class="results-container">
-      <h2>Estimation du pourcentage</h2>
+      <h2>Estimation du pourcentage {{ computeMean }}%</h2>
       <ul class="results-list">
         <li v-for="(result, index) in resultats" :key="index" class="result-card">
           <div class="result-content">
@@ -23,6 +23,16 @@ import { ref } from "vue";
 
 export default {
   name: "ResultsView",
+  computed: {
+    computeMean() {
+      let total = 0;
+      for (let i = 0; i < this.resultats.length; i++) {
+        total += this.resultats[i].probability;
+      }
+      let avg = total / this.resultats.length;
+      return Math.round(avg * 100) / 100
+    }
+  },
   setup() {
     const route = useRoute();
 
