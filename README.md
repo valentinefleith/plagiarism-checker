@@ -31,18 +31,18 @@ Then to start the server run:
 make run
 ```
 
-## Project setup
+### Start frontend
 Navigate to the frontend directory
 ```
 cd frontend
 ```
 
-### Install dependencies:
+Install dependencies:
 ```
 npm install
 ```
 
-### Start the development server with hot-reload
+Start the development server with hot-reload
 ```
 npm run serve
 ```
