@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 from torch.nn.functional import softmax
-from app.models import TextPost
+from .models import TextPost
 from fastapi.middleware.cors import CORSMiddleware
+
+MODEL_PATH = "backend/model"
 
 app = FastAPI()
 
@@ -19,11 +21,11 @@ app.add_middleware(
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = BertForSequenceClassification.from_pretrained(
-    "model/bert_phrases_classifier"
+    f"{MODEL_PATH}/bert_phrases_classifier"
 ).to(device)
-tokenizer = BertTokenizer.from_pretrained("model/bert_phrases_classifier")
+tokenizer = BertTokenizer.from_pretrained(f"{MODEL_PATH}/bert_phrases_classifier")
 label_encoder = torch.load(
-    "model/label_encoder.pth", map_location=device, weights_only=False
+    f"{MODEL_PATH}/label_encoder.pth", map_location=device, weights_only=False
 )
 
 
