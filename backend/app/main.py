@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
@@ -5,7 +6,7 @@ from torch.nn.functional import softmax
 from .models import TextPost
 from fastapi.middleware.cors import CORSMiddleware
 
-MODEL_PATH = "backend/model"
+MODEL_PATH = os.getenv("MODEL_PATH", "backend/model")
 
 app = FastAPI()
 
