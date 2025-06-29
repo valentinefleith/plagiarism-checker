@@ -29,7 +29,7 @@ clean:
 
 run: $(VENV)
 	@echo "$(BLUE)Running project...(RESET)"
-	$(VENV)/bin/python -m uvicorn backend.main:app --reload
+	$(VENV)/bin/python -m uvicorn backend.app.main:app --reload
 
 test: $(VENV)
 	@echo "$(CYAN)Running tests with pytest...$(RESET)"

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 from torch.nn.functional import softmax
-from backend.models import TextPost
+from app.models import TextPost
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
