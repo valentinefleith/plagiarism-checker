@@ -10,12 +10,11 @@ app = FastAPI()
 ## autorisation d'accès pour les requetes api
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"], 
+    allow_headers=["*"],
 )
-
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -53,4 +52,8 @@ async def predict_class(text: TextPost):
     #     else probas[0].tolist()[1]
     # )
     proba = probas[0].tolist()[1]
-    return {"text": text.body, "prediction": predicted_classname, "probability": round(proba * 100, 1)}
+    return {
+        "text": text.body,
+        "prediction": predicted_classname,
+        "probability": round(proba * 100, 1),
+    }
