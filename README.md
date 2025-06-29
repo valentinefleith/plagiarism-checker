@@ -17,8 +17,10 @@ You can NO LONGER visit our project at here : http://146.59.237.23/
 - Node.js version 18.x (to run the frontend)
 - Vue.js (used for the frontend)
 - Python (for data processing)
+- Docker
+
   
-### Installation
+### Manual Installation
 
 ```sh
 git clone git@github.com:valentinefleith/plagiarism-checker.git && cd plagiarism-checker
@@ -30,7 +32,7 @@ make setup
 ```
 
 
-### Start backend server
+#### Start backend server
 
 You can pull the model using `git lfs`. If it's not available for you, the model is downloadable [here](https://drive.google.com/drive/folders/1Y0Nees4Q0ghGcsctCkXw9fI_qvv0QOEn?usp=sharing).
 
@@ -39,7 +41,7 @@ Then to start the server run:
 make run
 ```
 
-### Start frontend
+#### Start frontend
 Navigate to the frontend directory
 ```
 cd frontend
@@ -53,4 +55,13 @@ npm install
 Start the development server with hot-reload
 ```
 npm run serve
+```
+
+### Docker installation
+
+run the following from the root of the repository:
+
+```
+docker-compose build
+docker-compose up -d
 ```
